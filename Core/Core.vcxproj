@@ -74,10 +74,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Core.h" />
+    <ClInclude Include="src\IOC\Container.h" />
+    <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\IOC\Singletons.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="src\IOC\Container.cpp" />
+    <ClCompile Include="src\Core.cpp" />
+    <ClCompile Include="src\IOC\Singletons.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
