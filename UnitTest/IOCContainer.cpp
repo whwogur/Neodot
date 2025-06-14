@@ -4,7 +4,6 @@
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace Neodot;
 using namespace std::string_literals;
 
 struct Base
@@ -34,14 +33,14 @@ struct Dependant
 	Dependant(std::shared_ptr<Base> pDependency_in) : pDependency{ std::move(pDependency_in) } {}
 };
 
-namespace Infrastructure
+namespace Infrastructure::IOC
 {
 	TEST_CLASS(IOCTests)
 	{
 	public:
 		TEST_METHOD_INITIALIZE(Init)
 		{
-			pIOC = std::make_unique<IOC::Container>();
+			pIOC = std::make_unique<Neodot::IOC::Container>();
 		}
 
 		// registering a service with a derived implementation, and resolving derived
@@ -111,6 +110,6 @@ namespace Infrastructure
 			Assert::AreEqual(69, pIOC->Resolve<Dependant>()->pDependency->Test());
 		}
 	private:
-		std::unique_ptr<IOC::Container> pIOC;
+		std::unique_ptr<Neodot::IOC::Container> pIOC;
 	};
 }

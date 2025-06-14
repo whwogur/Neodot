@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\log\Driver.h" />
     <ClInclude Include="src\log\Level.h" />
     <ClInclude Include="src\log\EntryBuilder.h" />
     <ClInclude Include="src\IOC\Container.h" />
@@ -83,6 +84,8 @@
     <ClInclude Include="src\log\Entry.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\log\Driver.cpp" />
+    <ClCompile Include="src\log\Channel.cpp" />
     <ClCompile Include="src\log\Level.cpp" />
     <ClCompile Include="src\log\EntryBuilder.cpp" />
     <ClCompile Include="src\IOC\Container.cpp" />

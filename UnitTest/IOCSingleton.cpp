@@ -5,6 +5,7 @@
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace std::string_literals;
 
 struct Base
 {
@@ -33,9 +34,6 @@ struct Dependant
 	Dependant(std::shared_ptr<Base> pDependency_in) : pDependency{ std::move(pDependency_in) } {}
 };
 
-using namespace Neodot;
-using namespace std::string_literals;
-
 namespace Infrastructure
 {
 	TEST_CLASS(IocSingletonTests)
@@ -43,8 +41,8 @@ namespace Infrastructure
 	public:
 		TEST_METHOD_INITIALIZE(Init)
 		{
-			pIOC = std::make_unique<IOC::Container>();
-			pSing = std::make_unique<IOC::Singletons>();
+			pIOC = std::make_unique<Neodot::IOC::Container>();
+			pSing = std::make_unique<Neodot::IOC::Singletons>();
 		}
 		// registering a service with a derived implementation, and resolving derived
 		// direct creation in singleton container
@@ -84,7 +82,7 @@ namespace Infrastructure
 			Assert::AreEqual("pube"s, pSecond->s);
 		}
 	private:
-		std::unique_ptr<IOC::Container> pIOC;
-		std::unique_ptr<IOC::Singletons> pSing;
+		std::unique_ptr<Neodot::IOC::Container> pIOC;
+		std::unique_ptr<Neodot::IOC::Singletons> pSing;
 	};
 }
