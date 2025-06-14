@@ -35,17 +35,17 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 		template<Parameterized T>
 		void Register(ParameterizedGenerator<T> gen)
 		{
-			serviceMap_[typeid(T)] = gen;
+			m_serviceMap[typeid(T)] = gen;
 		}
 		template<NotParameterized T>
 		void Register(Generator<T> gen)
 		{
-			serviceMap_[typeid(T)] = gen;
+			m_serviceMap[typeid(T)] = gen;
 		}
 		template<Parameterized T>
-		std::shared_ptr<T> Resolve(typename T::SvcParams&& params = {}) const
+		std::shared_ptr<T> Resolve(typename T::IocParams&& params = {}) const
 		{
-			return Resolve_<T, ParameterizedGenerator<T>>(std::forward<typename T::SvcParams>(params));
+			return Resolve_<T, ParameterizedGenerator<T>>(std::forward<typename T::IocParams>(params));
 		}
 		template<NotParameterized T>
 		std::shared_ptr<T> Resolve() const
@@ -60,7 +60,7 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 		std::shared_ptr<T> Resolve_(Ps&&...arg) const
 		{
 			// TODO: pull this out of template/header
-			if (const auto i = serviceMap_.find(typeid(T)); i != serviceMap_.end())
+			if (const auto i = m_serviceMap.find(typeid(T)); i != m_serviceMap.end())
 			{
 				const auto& entry = i->second;
 				try {
@@ -83,7 +83,7 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 		//=======
 		// data
 		//=======
-		std::unordered_map<std::type_index, std::any> serviceMap_;
+		std::unordered_map<std::type_index, std::any> m_serviceMap;
 	};
 
 	Container& Get() noexcept;

@@ -23,13 +23,13 @@ namespace Neodot::IOC
 		template<class T>
 		void Register(Generator<T> gen)
 		{
-			serviceMap_[typeid(T)] = gen;
+			m_serviceMap[typeid(T)] = gen;
 		}
 		template<class T>
 		std::shared_ptr<T> Resolve()
 		{
 			// TODO: pull this out of template/header
-			if (const auto i = serviceMap_.find(typeid(T)); i != serviceMap_.end())
+			if (const auto i = m_serviceMap.find(typeid(T)); i != m_serviceMap.end())
 			{
 				auto& entry = i->second;
 				try {
@@ -59,7 +59,7 @@ namespace Neodot::IOC
 		//===========
 		// data
 		//===========
-		std::unordered_map<std::type_index, std::any> serviceMap_;
+		std::unordered_map<std::type_index, std::any> m_serviceMap;
 	};
 
 	Singletons& Sing();

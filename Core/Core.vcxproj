@@ -74,11 +74,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\log\Level.h" />
+    <ClInclude Include="src\log\EntryBuilder.h" />
     <ClInclude Include="src\IOC\Container.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\IOC\Singletons.h" />
+    <ClInclude Include="src\log\Channel.h" />
+    <ClInclude Include="src\log\Entry.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\log\Level.cpp" />
+    <ClCompile Include="src\log\EntryBuilder.cpp" />
     <ClCompile Include="src\IOC\Container.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\IOC\Singletons.cpp" />
