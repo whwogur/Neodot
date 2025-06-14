@@ -20,6 +20,13 @@ public:
 	Log::Entry m_entry;
 };
 
+// ENUM tostring
+template<> inline std::wstring __cdecl
+Microsoft::VisualStudio::CppUnitTestFramework::ToString<Log::Level>(const Log::Level& level)
+{
+	return Log::GetLevelName(level);
+}
+
 namespace Infrastructure
 {
 	TEST_CLASS(LogTests)
@@ -31,8 +38,8 @@ namespace Infrastructure
 			MockChannel chan;
 			neolog.level(Log::Level::Info).note(L"TEST").chan(&chan);
 			Assert::AreEqual(L"TEST"s, chan.m_entry.m_note);
-			Assert::IsTrue(Log::Level::Info == chan.m_entry.m_level);
-			Assert::AreEqual(32, chan.m_entry.m_sourceLine);
+			Assert::AreEqual(Log::Level::Info, chan.m_entry.m_level);
+			Assert::AreEqual(39, chan.m_entry.m_sourceLine);
 		}
 
 		// testing simplified level/note
@@ -41,8 +48,8 @@ namespace Infrastructure
 			MockChannel chan;
 			neolog.info(L"TEST").chan(&chan);
 			Assert::AreEqual(L"TEST"s, chan.m_entry.m_note);
-			Assert::IsTrue(Log::Level::Info == chan.m_entry.m_level);
-			Assert::AreEqual(40, chan.m_entry.m_sourceLine);
+			Assert::AreEqual(Log::Level::Info, chan.m_entry.m_level);
+			Assert::AreEqual(49, chan.m_entry.m_sourceLine);
 		}
 	};
 }

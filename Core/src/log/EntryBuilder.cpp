@@ -9,6 +9,7 @@ namespace Neodot::Log
 			.m_sourceFile = sourceFile,
 			.m_sourceFunctionName = sourceFunctionName,
 			.m_sourceLine = sourceLine,
+			.m_timestamp = std::chrono::system_clock::now()
 		}
 	{
 	}
