@@ -39,6 +39,12 @@
     <ClInclude Include="src\log\Driver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="src\log\MsvcDebugDriver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\TextFormatter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core.cpp">
@@ -60,6 +66,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\log\Driver.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\MsvcDebugDriver.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\TextFormatter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

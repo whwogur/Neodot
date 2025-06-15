@@ -1,22 +1,19 @@
 #include <iostream>
-#include <Core/src/IOC/Container.h>
+#include <Core/src/log/EntryBuilder.h>
+#include <Core/src/log/Channel.h>
+#include <Core/src/log/MsvcDebugDriver.h>
+#include <Core/src/log/TextFormatter.h>
 
-struct Base
-{
-	virtual int Test() { return 420; }
-	virtual ~Base() = default;
-};
+using namespace std::string_literals;
 
-struct Derived : public Base
-{
-	int Test() override { return 69; }
-};
+#define neolog Neodot::Log::EntryBuilder{ __FILEW__, __FUNCTIONW__, __LINE__ }.chan(pChan.get())
 
 int main()
 {
-	using namespace Neodot;
+	std::unique_ptr<Neodot::Log::IChannel> pChan = std::make_unique<Neodot::Log::Channel>(std::vector<std::shared_ptr<Neodot::Log::IDriver>>{
+		std::make_shared<Neodot::Log::MsvcDebugDriver>(std::make_unique<Neodot::Log::TextFormatter>())
+	});
 
-	IOC::Get().Register<Base>([] {return std::make_shared<Derived>(); });
-
-	std::cout << IOC::Get().Resolve<Base>()->Test() << std::endl;
+	neolog.fatal(L"Test Failed");
+	return 0;
 }
