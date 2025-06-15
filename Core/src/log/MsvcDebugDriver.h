@@ -7,10 +7,11 @@ namespace Neodot::Log
 	class MsvcDebugDriver : public ITextDriver
 	{
 	public:
-		MsvcDebugDriver(std::unique_ptr<ITextFormatter> pFormatter = {});
+		MsvcDebugDriver(std::shared_ptr<ITextFormatter> pFormatter = {});
 		void Submit(const Entry&) override;
-		void SetFormatter(std::unique_ptr<ITextFormatter> pFormatter) override;
+		void SetFormatter(std::shared_ptr<ITextFormatter> pFormatter) override;
+
 	private:
-		std::unique_ptr<ITextFormatter> m_pFormatter;
+		std::shared_ptr<ITextFormatter> m_pFormatter;
 	};
 }

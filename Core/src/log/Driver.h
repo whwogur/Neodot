@@ -16,6 +16,6 @@ namespace Neodot::Log
 	class ITextDriver : public IDriver
 	{
 	public:
-		virtual void SetFormatter(std::unique_ptr<ITextFormatter>) = 0;
+		virtual void SetFormatter(std::shared_ptr<ITextFormatter>) = 0;
 	};
 }

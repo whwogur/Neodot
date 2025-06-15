@@ -14,7 +14,7 @@ namespace Neodot::Log
 		virtual ~IChannel() = default;
 		virtual void Submit(Entry&) = 0;
 		virtual void AttachDriver(std::shared_ptr<IDriver>) = 0;
-		virtual void AttachPolicy(std::unique_ptr<IPolicy>) = 0;
+		virtual void AttachPolicy(std::shared_ptr<IPolicy>) = 0;
 	};
 
 	class Channel : public IChannel
@@ -24,10 +24,10 @@ namespace Neodot::Log
 		~Channel();
 		void Submit(Entry&) override;
 		void AttachDriver(std::shared_ptr<IDriver>) override;
-		void AttachPolicy(std::unique_ptr<IPolicy>) override;
+		void AttachPolicy(std::shared_ptr<IPolicy>) override;
 
 	private:
 		std::vector<std::shared_ptr<IDriver>> m_driverPtrs;
-		std::vector<std::unique_ptr<IPolicy>> m_policyPtrs;
+		std::vector<std::shared_ptr<IPolicy>> m_policyPtrs;
 	};
 }

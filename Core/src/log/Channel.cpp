@@ -33,7 +33,7 @@ namespace Neodot::Log
 		m_driverPtrs.push_back(std::move(pDriver));
 	}
 
-	void Channel::AttachPolicy(std::unique_ptr<IPolicy> pPolicy)
+	void Channel::AttachPolicy(std::shared_ptr<IPolicy> pPolicy)
 	{
 		m_policyPtrs.push_back(std::move(pPolicy));
 	}

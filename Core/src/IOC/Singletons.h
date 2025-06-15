@@ -6,6 +6,7 @@
 #include <memory>
 #include <stdexcept>
 #include <format>
+#include "Container.h"
 
 namespace Neodot::IOC
 {
@@ -25,6 +26,13 @@ namespace Neodot::IOC
 		{
 			m_serviceMap[typeid(T)] = gen;
 		}
+
+		template<class T>
+		void RegisterPassthru()
+		{
+			Register<T>([] { return Neodot::IOC::Get().Resolve<T>(); });
+		}
+
 		template<class T>
 		std::shared_ptr<T> Resolve()
 		{

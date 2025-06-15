@@ -6,7 +6,7 @@
 
 namespace Neodot::Log
 {
-	MsvcDebugDriver::MsvcDebugDriver(std::unique_ptr<ITextFormatter> pFormatter)
+	MsvcDebugDriver::MsvcDebugDriver(std::shared_ptr<ITextFormatter> pFormatter)
 		: m_pFormatter{ std::move(pFormatter) }
 	{
 	}
@@ -17,7 +17,7 @@ namespace Neodot::Log
 		}
 		// TODO: how to log stuff from log system
 	}
-	void MsvcDebugDriver::SetFormatter(std::unique_ptr<ITextFormatter> pFormatter)
+	void MsvcDebugDriver::SetFormatter(std::shared_ptr<ITextFormatter> pFormatter)
 	{
 		m_pFormatter = std::move(pFormatter);
 	}
