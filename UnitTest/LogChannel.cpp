@@ -2,6 +2,7 @@
 #include <Core/src/log/EntryBuilder.h>
 #include <Core/src/log/Channel.h>
 #include <Core/src/log/Driver.h>
+#include <Core/src/log/SeverityLevelPolicy.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std::string_literals;
@@ -43,6 +44,22 @@ namespace Infrastructure::Log
 			Assert::AreEqual(Neodot::Log::Level::Info, pDriver1->m_entry.m_level);
 			Assert::AreEqual(L"HI"s, pDriver2->m_entry.m_note);
 			Assert::AreEqual(Neodot::Log::Level::Info, pDriver2->m_entry.m_level);
+		}
+
+		// test channel policy filtering
+		TEST_METHOD(TestPolicyFiltering)
+		{
+			Neodot::Log::Channel chan;
+			std::shared_ptr<MockDriver> pDriver1 = std::make_shared<MockDriver>();
+			chan.AttachDriver(pDriver1);
+			chan.AttachPolicy(std::make_unique<Neodot::Log::SeverityLevelPolicy>(Neodot::Log::Level::Info));
+			neolog.info(L"HI").chan(&chan);
+			Assert::AreEqual(L"HI"s, pDriver1->m_entry.m_note);
+			Assert::AreEqual(Neodot::Log::Level::Info, pDriver1->m_entry.m_level);
+
+			neolog.debug(L"Hello World").chan(&chan);
+			Assert::AreEqual(L"HI"s, pDriver1->m_entry.m_note);
+			Assert::AreEqual(Neodot::Log::Level::Info, pDriver1->m_entry.m_level);
 		}
 	};
 }

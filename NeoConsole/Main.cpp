@@ -3,6 +3,7 @@
 #include <Core/src/log/Channel.h>
 #include <Core/src/log/MsvcDebugDriver.h>
 #include <Core/src/log/TextFormatter.h>
+#include <Core/src/log/SeverityLevelPolicy.h>
 
 using namespace std::string_literals;
 
@@ -10,10 +11,14 @@ using namespace std::string_literals;
 
 int main()
 {
-	std::unique_ptr<Neodot::Log::IChannel> pChan = std::make_unique<Neodot::Log::Channel>(std::vector<std::shared_ptr<Neodot::Log::IDriver>>{
+	std::unique_ptr<Neodot::Log::IChannel> pChan = std::make_unique<Neodot::Log::Channel>(
+		std::vector<std::shared_ptr<Neodot::Log::IDriver>>{
 		std::make_shared<Neodot::Log::MsvcDebugDriver>(std::make_unique<Neodot::Log::TextFormatter>())
-	});
-
-	neolog.fatal(L"Test Failed");
+	}
+	);
+	pChan->AttachPolicy(std::make_unique<Neodot::Log::SeverityLevelPolicy>(Neodot::Log::Level::Error));
+	neolog.fatal(L"Fatal Error!");
+	neolog.warn(L"Warning");
+	neolog.error(L"Error");
 	return 0;
 }

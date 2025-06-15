@@ -13,6 +13,14 @@ namespace Neodot::Log
 		}
 	{
 	}
+
+	EntryBuilder::~EntryBuilder()
+	{
+		if (m_pDest) {
+			m_pDest->Submit(*this);
+		}
+	}
+
 	EntryBuilder& EntryBuilder::note(std::wstring note)
 	{
 		m_note = std::move(note);
@@ -23,10 +31,10 @@ namespace Neodot::Log
 		m_level = level;
 		return *this;
 	}
-	EntryBuilder& EntryBuilder::trace(std::wstring note)
+	EntryBuilder& EntryBuilder::verbose(std::wstring note)
 	{
 		m_note = std::move(note);
-		m_level = Level::Trace;
+		m_level = Level::Verbose;
 		return *this;
 	}
 	EntryBuilder& EntryBuilder::debug(std::wstring note)
@@ -64,10 +72,5 @@ namespace Neodot::Log
 		m_pDest = pChan;
 		return *this;
 	}
-	EntryBuilder::~EntryBuilder()
-	{
-		if (m_pDest) {
-			m_pDest->Submit(*this);
-		}
-	}
+	
 }

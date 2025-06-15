@@ -1,6 +1,7 @@
 #include "NeodotCppUnitTest.h"
 #include <Core/src/log/EntryBuilder.h>
 #include <Core/src/log/Channel.h>
+#include <Core/src/log/Policy.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std::string_literals;
@@ -16,6 +17,8 @@ public:
 		m_entry = e;
 	}
 	void AttachDriver(std::shared_ptr<Neodot::Log::IDriver>) override {}
+	virtual void AttachPolicy(std::unique_ptr<Neodot::Log::IPolicy>) override {}
+
 	Neodot::Log::Entry m_entry;
 };
 
