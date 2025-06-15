@@ -51,6 +51,15 @@
     <ClInclude Include="src\log\SeverityLevelPolicy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="src\thirdparty\backward.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\StackTrace.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\String.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core.cpp">
@@ -81,6 +90,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\log\SeverityLevelPolicy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\StackTrace.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\String.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

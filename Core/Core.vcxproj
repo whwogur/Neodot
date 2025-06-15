@@ -86,6 +86,9 @@
     <ClInclude Include="src\log\Channel.h" />
     <ClInclude Include="src\log\Entry.h" />
     <ClInclude Include="src\log\TextFormatter.h" />
+    <ClInclude Include="src\thirdparty\backward.hpp" />
+    <ClInclude Include="src\util\StackTrace.h" />
+    <ClInclude Include="src\util\String.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\log\SeverityLevelPolicy.cpp" />
@@ -98,6 +101,8 @@
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\IOC\Singletons.cpp" />
     <ClCompile Include="src\log\TextFormatter.cpp" />
+    <ClCompile Include="src\util\StackTrace.cpp" />
+    <ClCompile Include="src\util\String.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
