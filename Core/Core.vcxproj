@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\log\FileDriver.h" />
     <ClInclude Include="src\log\Log.h" />
     <ClInclude Include="src\log\SeverityLevelPolicy.h" />
     <ClInclude Include="src\log\Policy.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="src\util\String.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\log\FileDriver.cpp" />
     <ClCompile Include="src\log\Log.cpp" />
     <ClCompile Include="src\log\SeverityLevelPolicy.cpp" />
     <ClCompile Include="src\log\MsvcDebugDriver.cpp" />

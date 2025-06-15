@@ -4,6 +4,7 @@
 #include "SeverityLevelPolicy.h"
 #include "MsvcDebugDriver.h"
 #include "TextFormatter.h"
+#include "FileDriver.h"
 
 namespace Neodot::Log
 {
@@ -19,20 +20,27 @@ namespace Neodot::Log
 
 		// container
 		IOC::Get().Register<Log::IChannel>([] {
-			std::vector drivers{ IOC::Get().Resolve<Log::IDriver>() };
+			std::vector<std::shared_ptr<Log::IDriver>> drivers{
+				IOC::Get().Resolve<Log::IMsvcDebugDriver>(),
+				IOC::Get().Resolve<Log::IFileDriver>()
+			};
 			auto pChan = std::make_shared<Log::Channel>(std::move(drivers));
-			pChan->AttachPolicy(IOC::Get().Resolve<Log::SeverityLevelPolicy>());
+			pChan->AttachPolicy(IOC::Get().Resolve<Log::ISeverityLevelPolicy>());
 			return pChan;
-			});
-		IOC::Get().Register<Log::IDriver>([] {
+		});
+
+		IOC::Get().Register<Log::IFileDriver>([] {
+			return std::make_shared<Log::SimpleFileDriver>("logs\\log.txt", IOC::Get().Resolve<Log::ITextFormatter>());
+		});
+		IOC::Get().Register<Log::IMsvcDebugDriver>([] {
 			return std::make_shared<Log::MsvcDebugDriver>(IOC::Get().Resolve<Log::ITextFormatter>());
-			});
+		});
 		IOC::Get().Register<Log::ITextFormatter>([] {
 			return std::make_shared<Log::TextFormatter>();
-			});
-		IOC::Get().Register<Log::SeverityLevelPolicy>([] {
+		});
+		IOC::Get().Register<Log::ISeverityLevelPolicy>([] {
 			return std::make_shared<Log::SeverityLevelPolicy>(Log::Level::Error);
-			});
+		});
 
 		// Singleton
 		IOC::Sing().RegisterPassthru<Log::IChannel>();
