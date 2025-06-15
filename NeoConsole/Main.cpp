@@ -27,5 +27,9 @@ int main()
 	neolog.warn(L"Warning");
 	foo();
 
+	Neodot::util::StackTrace st1;
+	Neodot::util::StackTrace st2 = std::move(st1);
+
+	std::wcout << st2.Print() << std::endl;
 	return 0;
 }

@@ -21,22 +21,48 @@ namespace Neodot::util
 		}
 	}
 	StackTrace::StackTrace(const StackTrace& src)
-		: m_pTrace{ std::make_unique<backward::StackTrace>(*src.m_pTrace) }
+		: m_pTrace
+		{ 
+			src.m_pTrace ? 
+			std::make_unique<backward::StackTrace>(*src.m_pTrace) : std::unique_ptr<backward::StackTrace>{} 
+		}
 	{
 	}
+
+	StackTrace::StackTrace(StackTrace&& donor) noexcept
+		: m_pTrace{ std::move(donor.m_pTrace) }
+	{
+	}
+
 	StackTrace& StackTrace::operator=(const StackTrace& src)
 	{
-		m_pTrace = std::make_unique<backward::StackTrace>(*src.m_pTrace);
+		m_pTrace = src.m_pTrace ? std::make_unique<backward::StackTrace>(*src.m_pTrace) : std::unique_ptr<backward::StackTrace>{};
 		return *this;
 	}
+	StackTrace& StackTrace::operator=(StackTrace&& donor) noexcept
+	{
+		if (&donor != this)
+		{
+			m_pTrace = std::move(donor.m_pTrace);
+		}
+		return *this;
+	}
+
 	// include backward.hpp in cpp file to remove bloat
 	StackTrace::~StackTrace() {} // generate destructor where backward.hpp is at
 	
 	std::wstring StackTrace::Print() const
 	{
-		std::ostringstream oss;
-		backward::Printer printer;
-		printer.print(*m_pTrace, oss);
-		return util::ToWide(oss.str());
+		if (m_pTrace)
+		{
+				std::ostringstream oss;
+			backward::Printer printer;
+			printer.print(*m_pTrace, oss);
+			return Neodot::util::ToWide(oss.str());
+		}
+		else
+		{
+			return L"== EMPTY TRACE ==";
+		}
 	}
 }
