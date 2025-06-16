@@ -66,6 +66,12 @@
     <ClInclude Include="src\log\FileDriver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\Assert.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Macro.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core.cpp">
@@ -108,6 +114,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\log\FileDriver.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\Assert.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

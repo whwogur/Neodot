@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\util\Assert.h" />
     <ClInclude Include="src\log\FileDriver.h" />
     <ClInclude Include="src\log\Log.h" />
     <ClInclude Include="src\log\SeverityLevelPolicy.h" />
@@ -89,10 +90,12 @@
     <ClInclude Include="src\log\Entry.h" />
     <ClInclude Include="src\log\TextFormatter.h" />
     <ClInclude Include="src\thirdparty\backward.hpp" />
+    <ClInclude Include="src\util\Macro.h" />
     <ClInclude Include="src\util\StackTrace.h" />
     <ClInclude Include="src\util\String.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\util\Assert.cpp" />
     <ClCompile Include="src\log\FileDriver.cpp" />
     <ClCompile Include="src\log\Log.cpp" />
     <ClCompile Include="src\log\SeverityLevelPolicy.cpp" />
