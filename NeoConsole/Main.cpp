@@ -27,7 +27,16 @@ int main()
 
 	int x = 0, y = 1;
 	//neo_assert(x > y).msg(L"TEST").neo_watch(x).neo_watch(y);
-	neo_check(x > y);
+	//neo_check(x > y);
+
+	try
+	{
+		neo_check(x > y).neo_watch(x).ex();
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }

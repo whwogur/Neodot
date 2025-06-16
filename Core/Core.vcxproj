@@ -74,6 +74,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\IOC\Exception.h" />
+    <ClInclude Include="src\util\Exception.h" />
     <ClInclude Include="src\util\Assert.h" />
     <ClInclude Include="src\log\FileDriver.h" />
     <ClInclude Include="src\log\Log.h" />
@@ -95,6 +97,7 @@
     <ClInclude Include="src\util\String.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\util\Exception.cpp" />
     <ClCompile Include="src\util\Assert.cpp" />
     <ClCompile Include="src\log\FileDriver.cpp" />
     <ClCompile Include="src\log\Log.cpp" />

@@ -5,9 +5,12 @@
 #include "StackTrace.h"  
 #include <format>  
 #include "Macro.h"  
+#include "Exception.h"
 
 namespace Neodot::util
 {
+	ND_EX_DEF(FailedAssertion);
+
 	class Assertion
 	{
 	public:
@@ -28,6 +31,9 @@ namespace Neodot::util
 			m_stream << L"   " << name << L" => " << std::forward<T>(val) << L"\n";
 			return *this;
 		}
+		[[noreturn]]
+		void ex();
+
 	private:
 		const wchar_t* m_file;
 		const wchar_t* m_function;

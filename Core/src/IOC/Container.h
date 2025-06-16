@@ -7,8 +7,9 @@
 #include <stdexcept>
 #include <format>
 #include <tuple>
-#include <stdexcept>
-
+#include "Exception.h"
+#include <Core/src/util/Assert.h>
+#include <Core/src/util/String.h>
 
 namespace Neodot::IOC // IOC 팩토리
 {
@@ -67,17 +68,16 @@ namespace Neodot::IOC // IOC 팩토리
 					return std::any_cast<G>(entry)(std::forward<Ps>(arg)...);
 				}
 				catch (const std::bad_any_cast&) {
-					// 타입 불일치 / 미등록 예외 처리
-					// TODO : Assert로 만들것
-					throw std::logic_error{ std::format(
-						"Could not resolve IoC mapped type\nfrom: [{}]\n  to: [{}]\n",
-						entry.type().name(), typeid(G).name()
-					) };
+					neo_assert(false).msg(std::format(
+						L"Could not resolve IoC mapped type\nfrom: [{}]\n  to: [{}]\n",
+						Neodot::util::ToWide(entry.type().name()), Neodot::util::ToWide(typeid(G).name())
+					)).ex();
+					return {};
 				}
 			}
 			else
 			{
-				throw std::runtime_error{ std::format("Could not find generator for type [{}] in IoC container", typeid(T).name()) };
+				throw ServiceNotFound{ std::format("Could not find generator for type [{}] in IoC container", typeid(T).name()) };
 			}
 		}
 		//=======

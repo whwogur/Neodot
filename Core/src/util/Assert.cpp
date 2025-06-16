@@ -31,4 +31,10 @@ namespace Neodot::util
 		m_stream << L"  Msg: " << message << L"\n";
 		return *this;
 	}
+
+	void Assertion::ex()
+	{
+		m_consequence = Consequence::Exception;
+		throw FailedAssertion{};
+	}
 }

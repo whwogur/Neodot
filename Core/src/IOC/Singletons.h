@@ -7,6 +7,9 @@
 #include <stdexcept>
 #include <format>
 #include "Container.h"
+#include "Exception.h"
+#include <Core/src/util/Assert.h>
+#include <Core/src/util/String.h>
 
 namespace Neodot::IOC
 {
@@ -40,7 +43,8 @@ namespace Neodot::IOC
 			if (const auto i = m_serviceMap.find(typeid(T)); i != m_serviceMap.end())
 			{
 				auto& entry = i->second;
-				try {
+				try
+				{
 					// 인스턴스가 이미 있으면 그걸 리턴
 					if (auto ppInstance = std::any_cast<std::shared_ptr<T>>(&entry)) {
 						return *ppInstance;
@@ -50,12 +54,14 @@ namespace Neodot::IOC
 					entry = pInstance;
 					return pInstance;
 				}
-				catch (const std::bad_any_cast&) {
-					// TODO: assert
-					throw std::logic_error{ std::format(
-						"Could not resolve Singleton mapped type\nfrom: [{}]\n  to: [{}]\n",
-						entry.type().name(), typeid(Generator<T>).name()
-					) };
+				catch (const std::bad_any_cast&)
+				{
+					neo_assert(false).msg(std::format(
+						L"Could not resolve Singleton mapped type\nfrom: [{}]\n  to: [{}]\n",
+						Neodot::util::ToWide(entry.type().name()),
+						Neodot::util::ToWide(typeid(Generator<T>).name())
+					)).ex();
+					return {};
 				}
 			}
 			else
