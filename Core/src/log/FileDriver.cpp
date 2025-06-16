@@ -17,6 +17,12 @@ namespace Neodot::Log
 			m_file << m_pFormatter->Format(e).c_str();
 		}
 	}
+
+	void SimpleFileDriver::Flush()
+	{
+		m_file.flush();
+	}
+
 	void SimpleFileDriver::SetFormatter(std::shared_ptr<ITextFormatter> pFormatter)
 	{
 		m_pFormatter = std::move(pFormatter);

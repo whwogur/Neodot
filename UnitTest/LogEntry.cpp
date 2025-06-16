@@ -17,6 +17,7 @@ public:
 		m_entry = e;
 	}
 	void AttachDriver(std::shared_ptr<Neodot::Log::IDriver>) override {}
+	void Flush() override {}
 	virtual void AttachPolicy(std::shared_ptr<Neodot::Log::IPolicy>) override {}
 
 	Neodot::Log::Entry m_entry;

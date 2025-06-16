@@ -16,6 +16,8 @@ public:
 	{
 		m_entry = e;
 	}
+	void Flush() override {}
+
 	Neodot::Log::Entry m_entry;
 };
 

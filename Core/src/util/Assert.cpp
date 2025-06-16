@@ -22,6 +22,7 @@ namespace Neodot::util
 
 		if (Consequence::Terminate == m_consequence)
 		{
+			Neodot::Log::GetDefaultChannel()->Flush();
 			std::terminate();
 		}
 	}

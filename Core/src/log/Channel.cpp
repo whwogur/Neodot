@@ -27,6 +27,13 @@ namespace Neodot::Log
 			pDriver->Submit(e);
 		}
 	}
+	void Channel::Flush()
+	{
+			for (std::shared_ptr<IDriver>& pDriver : m_driverPtrs)
+			{
+				pDriver->Flush();
+			}
+	}
 
 	void Channel::AttachDriver(std::shared_ptr<IDriver> pDriver)
 	{

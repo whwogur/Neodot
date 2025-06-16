@@ -17,8 +17,11 @@ namespace Neodot::Log
 		}
 		// TODO: how to log stuff from log system
 	}
+	void MsvcDebugDriver::Flush() {}
+
 	void MsvcDebugDriver::SetFormatter(std::shared_ptr<ITextFormatter> pFormatter)
 	{
 		m_pFormatter = std::move(pFormatter);
 	}
+
 }

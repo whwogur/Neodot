@@ -13,6 +13,7 @@ namespace Neodot::Log
 	public:
 		SimpleFileDriver(std::filesystem::path path, std::shared_ptr<ITextFormatter> pFormatter = {});
 		void Submit(const Entry&) override;
+		void Flush() override;
 		void SetFormatter(std::shared_ptr<ITextFormatter> pFormatter) override;
 	private:
 		std::wofstream m_file;

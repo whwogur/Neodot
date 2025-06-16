@@ -11,6 +11,7 @@ namespace Neodot::Log
 	public:
 		MsvcDebugDriver(std::shared_ptr<ITextFormatter> pFormatter = {});
 		void Submit(const Entry&) override;
+		void Flush() override;
 		void SetFormatter(std::shared_ptr<ITextFormatter> pFormatter) override;
 
 	private:
