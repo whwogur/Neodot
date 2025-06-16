@@ -39,6 +39,7 @@ namespace Neodot::util
 		const wchar_t* m_file;
 		const wchar_t* m_function;
 		int m_line = -1;
+		int m_skipDepth = 0;
 		Consequence m_consequence;
 		std::wostringstream m_stream;
 	};
