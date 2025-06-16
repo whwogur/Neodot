@@ -72,7 +72,8 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 						L"Could not resolve IoC mapped type\nfrom: [{}]\n  to: [{}]\n",
 						Neodot::util::ToWide(entry.type().name()), Neodot::util::ToWide(typeid(G).name())
 					)).ex();
-					return {};
+					
+					no_return;
 				}
 			}
 			else

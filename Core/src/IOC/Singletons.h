@@ -61,7 +61,8 @@ namespace Neodot::IOC
 						Neodot::util::ToWide(entry.type().name()),
 						Neodot::util::ToWide(typeid(Generator<T>).name())
 					)).ex();
-					return {};
+					
+					no_return;
 				}
 			}
 			else
