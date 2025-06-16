@@ -20,7 +20,7 @@ namespace Neodot::Log
 		{
 			if ((static_cast<int>(m_level) <= static_cast<int>(Level::Error)))
 			{
-				m_trace.emplace(6/* skip stacks */);
+				m_trace.emplace(m_straceSkipDepth);
 			}
 			m_pDest->Submit(*this);
 		}
@@ -77,5 +77,10 @@ namespace Neodot::Log
 		m_pDest = pChan;
 		return *this;
 	}
-	
+
+	EntryBuilder& EntryBuilder::trace_skip(int depth)
+	{
+		m_straceSkipDepth = depth;
+		return *this;
+	}
 }

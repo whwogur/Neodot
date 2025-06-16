@@ -9,6 +9,7 @@ namespace Neodot::Log
 	{
 	public:
 		EntryBuilder(const wchar_t* sourceFile, const wchar_t* sourceFunctionName, int sourceLine);
+		~EntryBuilder();
 		EntryBuilder& note(std::wstring note);
 		EntryBuilder& level(Level);
 		EntryBuilder& verbose(std::wstring note = L"");
@@ -18,8 +19,9 @@ namespace Neodot::Log
 		EntryBuilder& error(std::wstring note = L"");
 		EntryBuilder& fatal(std::wstring note = L"");
 		EntryBuilder& chan(IChannel*);
-		~EntryBuilder();
+		EntryBuilder& trace_skip(int depth);
 	private:
 		IChannel* m_pDest = nullptr;
+		int m_straceSkipDepth = 6;
 	};
 }
