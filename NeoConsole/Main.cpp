@@ -25,18 +25,8 @@ int main()
 {
 	Init();
 
-	int x = 0, y = 1;
-	//neo_assert(x > y).msg(L"TEST").neo_watch(x).neo_watch(y);
-	//neo_check(x > y);
-
-	try
-	{
-		neo_check(x > y).neo_watch(x).ex();
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	int x = 0, y = 1, a = 2, b = 3;
+	neo_assert(x > y).msg(L"TEST").neo_watch(x, y, a, b, rand());
 
 	return 0;
 }
