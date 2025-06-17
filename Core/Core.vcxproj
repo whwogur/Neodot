@@ -74,6 +74,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\DS\Dimensions.h" />
+    <ClInclude Include="src\DS\Rect.h" />
+    <ClInclude Include="src\DS\Vec2.h" />
     <ClInclude Include="src\window\Exception.h" />
     <ClInclude Include="src\window\IWindow.h" />
     <ClInclude Include="src\util\NoReturn.h" />
