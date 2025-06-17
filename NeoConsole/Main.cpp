@@ -1,8 +1,9 @@
 #include <iostream>
 #include <Core/src/ioc/Container.h>
-#include <Core/src/log/SeverityLevelPolicy.h>
-#include <Core/src/log/Log.h>
+#include <Core/src/Log/SeverityLevelPolicy.h>
+#include <Core/src/Log/Log.h>
 #include <Core/src/util/Assert.h>
+#include <Core/src/window/WindowClass.h>
 
 using namespace std::string_literals;
 
@@ -25,8 +26,7 @@ int main()
 {
 	Init();
 
-	int x = 0, y = 1, a = 2, b = 3;
-	neo_assert(x > y).msg(L"TEST").neo_watch(x, y, a, b, rand());
+	auto pWinClass = std::make_shared<Neodot::window::WindowClass>(L"");
 
 	return 0;
 }

@@ -74,47 +74,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\window\Exception.h" />
+    <ClInclude Include="src\window\IWindow.h" />
     <ClInclude Include="src\util\NoReturn.h" />
     <ClInclude Include="src\IOC\Exception.h" />
     <ClInclude Include="src\util\Exception.h" />
     <ClInclude Include="src\util\Assert.h" />
-    <ClInclude Include="src\log\FileDriver.h" />
-    <ClInclude Include="src\log\Log.h" />
-    <ClInclude Include="src\log\SeverityLevelPolicy.h" />
-    <ClInclude Include="src\log\Policy.h" />
-    <ClInclude Include="src\log\MsvcDebugDriver.h" />
-    <ClInclude Include="src\log\Driver.h" />
-    <ClInclude Include="src\log\Level.h" />
-    <ClInclude Include="src\log\EntryBuilder.h" />
+    <ClInclude Include="src\Log\FileDriver.h" />
+    <ClInclude Include="src\Log\Log.h" />
+    <ClInclude Include="src\Log\SeverityLevelPolicy.h" />
+    <ClInclude Include="src\Log\Policy.h" />
+    <ClInclude Include="src\Log\MsvcDebugDriver.h" />
+    <ClInclude Include="src\Log\Driver.h" />
+    <ClInclude Include="src\Log\Level.h" />
+    <ClInclude Include="src\Log\EntryBuilder.h" />
     <ClInclude Include="src\IOC\Container.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\IOC\Singletons.h" />
-    <ClInclude Include="src\log\Channel.h" />
-    <ClInclude Include="src\log\Entry.h" />
-    <ClInclude Include="src\log\TextFormatter.h" />
+    <ClInclude Include="src\Log\Channel.h" />
+    <ClInclude Include="src\Log\Entry.h" />
+    <ClInclude Include="src\Log\TextFormatter.h" />
     <ClInclude Include="src\thirdparty\backward.hpp" />
     <ClInclude Include="src\util\Macro.h" />
     <ClInclude Include="src\util\StackTrace.h" />
     <ClInclude Include="src\util\String.h" />
+    <ClInclude Include="src\window\NeoWin.h" />
+    <ClInclude Include="src\window\WindowClass.h" />
+    <ClInclude Include="src\window\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\util\NoReturn.cpp" />
     <ClCompile Include="src\util\Exception.cpp" />
     <ClCompile Include="src\util\Assert.cpp" />
-    <ClCompile Include="src\log\FileDriver.cpp" />
-    <ClCompile Include="src\log\Log.cpp" />
-    <ClCompile Include="src\log\SeverityLevelPolicy.cpp" />
-    <ClCompile Include="src\log\MsvcDebugDriver.cpp" />
-    <ClCompile Include="src\log\Driver.cpp" />
-    <ClCompile Include="src\log\Channel.cpp" />
-    <ClCompile Include="src\log\Level.cpp" />
-    <ClCompile Include="src\log\EntryBuilder.cpp" />
+    <ClCompile Include="src\Log\FileDriver.cpp" />
+    <ClCompile Include="src\Log\Log.cpp" />
+    <ClCompile Include="src\Log\SeverityLevelPolicy.cpp" />
+    <ClCompile Include="src\Log\MsvcDebugDriver.cpp" />
+    <ClCompile Include="src\Log\Driver.cpp" />
+    <ClCompile Include="src\Log\Channel.cpp" />
+    <ClCompile Include="src\Log\Level.cpp" />
+    <ClCompile Include="src\Log\EntryBuilder.cpp" />
     <ClCompile Include="src\IOC\Container.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\IOC\Singletons.cpp" />
-    <ClCompile Include="src\log\TextFormatter.cpp" />
+    <ClCompile Include="src\Log\TextFormatter.cpp" />
     <ClCompile Include="src\util\StackTrace.cpp" />
     <ClCompile Include="src\util\String.cpp" />
+    <ClCompile Include="src\window\WindowClass.cpp" />
+    <ClCompile Include="src\window\Utilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

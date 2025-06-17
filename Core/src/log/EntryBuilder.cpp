@@ -1,18 +1,21 @@
 #include "EntryBuilder.h"
 #include "Channel.h"
+#include <Core/src/window/NeoWin.h>
+
+#pragma warning(push) 
+#pragma warning(disable: 26815) 
+// Visual Studio static analysis; 함수에서 *this 반환 시 발생하는 경고 무시
 
 namespace Neodot::Log
 {
 	EntryBuilder::EntryBuilder(const wchar_t* sourceFile, const wchar_t* sourceFunctionName, int sourceLine)
-		:
-		Entry{
+		: Entry{
 			.m_sourceFile = sourceFile,
 			.m_sourceFunctionName = sourceFunctionName,
 			.m_sourceLine = sourceLine,
 			.m_timestamp = std::chrono::system_clock::now()
 		}
-	{
-	}
+	{}
 
 	EntryBuilder::~EntryBuilder()
 	{
@@ -31,11 +34,13 @@ namespace Neodot::Log
 		m_note = std::move(note);
 		return *this;
 	}
+
 	EntryBuilder& EntryBuilder::level(Level level)
 	{
 		m_level = level;
 		return *this;
 	}
+
 	EntryBuilder& EntryBuilder::verbose(std::wstring note)
 	{
 		m_note = std::move(note);
@@ -83,4 +88,17 @@ namespace Neodot::Log
 		m_straceSkipDepth = depth;
 		return *this;
 	}
+
+	EntryBuilder& EntryBuilder::hr()
+	{
+		m_hResult = GetLastError();
+		return *this;
+	}
+
+	EntryBuilder& EntryBuilder::hr(unsigned int hr)
+	{
+		m_hResult = hr;
+		return *this;
+	}
 }
+#pragma warning(pop)

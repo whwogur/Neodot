@@ -20,6 +20,8 @@ namespace Neodot::Log
 		EntryBuilder& fatal(std::wstring note = L"");
 		EntryBuilder& chan(IChannel*);
 		EntryBuilder& trace_skip(int depth);
+		EntryBuilder& hr();
+		EntryBuilder& hr(unsigned int);
 	private:
 		IChannel* m_pDest = nullptr;
 		int m_straceSkipDepth = 6;

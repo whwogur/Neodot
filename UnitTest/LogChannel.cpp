@@ -1,8 +1,8 @@
 #include "NeodotCppUnitTest.h"
-#include <Core/src/log/EntryBuilder.h>
-#include <Core/src/log/Channel.h>
-#include <Core/src/log/Driver.h>
-#include <Core/src/log/SeverityLevelPolicy.h>
+#include <Core/src/Log/EntryBuilder.h>
+#include <Core/src/Log/Channel.h>
+#include <Core/src/Log/Driver.h>
+#include <Core/src/Log/SeverityLevelPolicy.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std::string_literals;

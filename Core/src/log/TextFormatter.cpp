@@ -1,8 +1,8 @@
-#pragma once
 #include "TextFormatter.h"
 #include "Entry.h"
 #include <format>
 #include <sstream>
+#include <Core/src/window/Utilities.h>
 
 namespace Neodot::Log
 {
@@ -18,7 +18,15 @@ namespace Neodot::Log
 			e.m_sourceLine
 		);
 
-		if (e.m_trace) {
+		if (e.m_hResult)
+		{
+			// HRESULT가 있는 경우 포맷된 문자열로 출력 (16진수 코드와 설명 포함)
+			oss << std::format(L"  !HRESULT [{:#010x}]: {}\n", *e.m_hResult,
+				Neodot::window::GetErrorDescription(*e.m_hResult));
+		}
+
+		if (e.m_trace)
+		{
 			oss << e.m_trace->Print() << std::endl;
 		}
 
