@@ -63,6 +63,14 @@ namespace Neodot::util
 	, NDD_ACTIVE ? Neodot::util::Assertion::Consequence::Terminate : Neodot::util::Assertion::Consequence::Log\
 }  
 
+#define neo_check_fail (void)Neodot::util::Assertion{\
+	L"[Always Fail]"\
+	, __FILEW__\
+	, __FUNCTIONW__\
+	, __LINE__\
+	, NDD_ACTIVE ? Neodot::util::Assertion::Consequence::Terminate : Neodot::util::Assertion::Consequence::Log\
+} 
+
 #define neo_watch(...) ND_DISPATCH_VA(ND_INTERNAL_AW_, __VA_ARGS__) 
 #define ND_INTERNAL_AW_(expr) watch((expr), ND_WSTR(expr)) 
 #define ND_INTERNAL_AW_1_(z) ND_INTERNAL_AW_(z) 

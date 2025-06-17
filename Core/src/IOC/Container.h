@@ -68,12 +68,10 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 					return std::any_cast<G>(entry)(std::forward<Ps>(arg)...);
 				}
 				catch (const std::bad_any_cast&) {
-					neo_assert(false).msg(std::format(
+					neo_check_fail.msg(std::format(
 						L"Could not resolve IoC mapped type\nfrom: [{}]\n  to: [{}]\n",
 						Neodot::util::ToWide(entry.type().name()), Neodot::util::ToWide(typeid(G).name())
 					)).ex();
-					
-					no_return;
 				}
 			}
 			else

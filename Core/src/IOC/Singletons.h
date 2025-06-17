@@ -56,13 +56,11 @@ namespace Neodot::IOC
 				}
 				catch (const std::bad_any_cast&)
 				{
-					neo_assert(false).msg(std::format(
+					neo_check_fail.msg(std::format(
 						L"Could not resolve Singleton mapped type\nfrom: [{}]\n  to: [{}]\n",
 						Neodot::util::ToWide(entry.type().name()),
 						Neodot::util::ToWide(typeid(Generator<T>).name())
 					)).ex();
-					
-					no_return;
 				}
 			}
 			else
