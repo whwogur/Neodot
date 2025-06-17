@@ -18,7 +18,7 @@ void Init()
 {
 	Neodot::Log::Init();
 	Neodot::IOC::Get().Register<Neodot::Log::ISeverityLevelPolicy>(
-		[] { return std::make_shared<Neodot::Log::SeverityLevelPolicy>(Neodot::Log::Level::Warn);
+		[] { return std::make_shared<Neodot::Log::SeverityLevelPolicy>(Neodot::Log::Level::Info);
 		});
 }
 
@@ -26,7 +26,10 @@ int main()
 {
 	Init();
 
-	auto pWinClass = std::make_shared<Neodot::window::WindowClass>(L"");
+	auto pWinClass = std::make_shared<Neodot::window::WindowClass>();
+
+	neolog.error(L"TEST: no trace").no_trace().no_line();
+	neolog.info().trace();
 
 	return 0;
 }

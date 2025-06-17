@@ -22,6 +22,10 @@ namespace Neodot::Log
 		EntryBuilder& trace_skip(int depth);
 		EntryBuilder& hr();
 		EntryBuilder& hr(unsigned int);
+		EntryBuilder& no_trace();
+		EntryBuilder& trace();
+		EntryBuilder& no_line();
+		EntryBuilder& line();
 	private:
 		IChannel* m_pDest = nullptr;
 		int m_straceSkipDepth = 6;

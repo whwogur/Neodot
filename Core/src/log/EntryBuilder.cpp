@@ -21,10 +21,11 @@ namespace Neodot::Log
 	{
 		if (m_pDest)
 		{
-			if ((static_cast<int>(m_level) <= static_cast<int>(Level::Error)))
+			if (m_bCaptureTrace.value_or(static_cast<int>(m_level) <= static_cast<int>(Level::Error)))
 			{
 				m_trace.emplace(m_straceSkipDepth);
 			}
+
 			m_pDest->Submit(*this);
 		}
 	}
@@ -98,6 +99,30 @@ namespace Neodot::Log
 	EntryBuilder& EntryBuilder::hr(unsigned int hr)
 	{
 		m_hResult = hr;
+		return *this;
+	}
+
+	EntryBuilder& EntryBuilder::no_trace()
+	{
+		m_bCaptureTrace = false;
+		return *this;
+	}
+
+	EntryBuilder& EntryBuilder::trace()
+	{
+		m_bCaptureTrace = true;
+		return *this;
+	}
+
+	EntryBuilder& EntryBuilder::no_line()
+	{
+		m_bShowSourceLine = false;
+		return *this;
+	}
+
+	EntryBuilder& EntryBuilder::line()
+	{
+		m_bShowSourceLine = true;
 		return *this;
 	}
 }

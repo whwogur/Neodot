@@ -16,5 +16,9 @@ namespace Neodot::Log
 		std::chrono::system_clock::time_point m_timestamp = std::chrono::system_clock::time_point();
 		std::optional<util::StackTrace> m_trace;
 		std::optional<unsigned int> m_hResult;
+
+		// behavior override flags
+		std::optional<bool> m_bCaptureTrace;
+		std::optional<bool> m_bShowSourceLine;
 	};
 }
