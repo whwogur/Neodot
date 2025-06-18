@@ -96,16 +96,19 @@
     <ClInclude Include="src\window\Utilities.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="src\DS\Dimensions.h">
+    <ClInclude Include="src\DS\Spatial\Dimensions.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="src\DS\Rect.h">
+    <ClInclude Include="src\DS\Spatial\Rect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="src\DS\Vec2.h">
+    <ClInclude Include="src\DS\Spatial\Vec2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="src\window\Init.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DS\Concurrency\TaskQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -168,6 +171,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\window\Init.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DS\Concurrency\TaskQueue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

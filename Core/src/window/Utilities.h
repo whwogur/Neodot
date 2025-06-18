@@ -1,8 +1,8 @@
 #pragma once 
 #include <string> 
 #include "NeoWin.h"
-#include <Core/src/DS/Dimensions.h>
-#include <Core/src/DS/Rect.h>
+#include <Core/src/DS/Spatial/Dimensions.h>
+#include <Core/src/DS/Spatial/Rect.h>
 
 namespace Neodot::window
 {

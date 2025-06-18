@@ -13,6 +13,10 @@ namespace Neodot::DS
             return width * height;
         }
 
+        bool operator==(const DimensionsT& rhs) const
+        {
+            return width == rhs.width && height == rhs.height;
+        }
         //===========
         // data
         //===========
