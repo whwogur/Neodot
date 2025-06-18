@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataStructure.cpp" />
     <ClCompile Include="IOCContainer.cpp" />
     <ClCompile Include="IOCSingleton.cpp" />
     <ClCompile Include="LogEntry.cpp" />

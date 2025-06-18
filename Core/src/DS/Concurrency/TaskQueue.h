@@ -11,8 +11,8 @@ namespace Neodot::DS
 		Task() = default;
 
 		template<typename F>
-		requires std::is_invocable_r_v<void, F>
-		Task(F&& f): m_callable(std::make_unique<CallableImpl<std::decay_t<F>>>(std::forward<F>(f))) {}
+		requires std::is_invocable_v<F>
+		Task(F&& f) : m_callable(std::make_unique<CallableImpl<std::decay_t<F>>>(std::forward<F>(f))) {}
 
 		Task(Task&& other) noexcept = default;
 		Task& operator=(Task&& other) noexcept = default;
@@ -28,17 +28,17 @@ namespace Neodot::DS
 	private:
 		struct CallableBase {
 			virtual ~CallableBase() = default;
-			virtual void invoke() const = 0;
+			virtual void invoke() = 0;
 		};
 
-		template<typename F>
+		template<std::invocable F>
 		struct CallableImpl : CallableBase
 		{
 			CallableImpl(F&& f) 
 				: 
 				m_func(std::forward<F>(f)) {}
 			
-			void invoke() const override { m_func(); }
+			void invoke() override { m_func(); }
 			F m_func;
 		};
 
