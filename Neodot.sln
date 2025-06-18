@@ -9,6 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeoConsole", "NeoConsole\Ne
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{1723FD3C-92BD-E27E-67A3-92BABFB90E1A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowApp", "WindowApp\WindowApp.vcxproj", "{2183478F-8458-4993-B49F-6A956AAB1EDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2029C1DE-2DC7-46CB-B3D0-9CB9C7392544} = {2029C1DE-2DC7-46CB-B3D0-9CB9C7392544}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +32,10 @@ Global
 		{1723FD3C-92BD-E27E-67A3-92BABFB90E1A}.Debug|x64.Build.0 = Debug|x64
 		{1723FD3C-92BD-E27E-67A3-92BABFB90E1A}.Release|x64.ActiveCfg = Release|x64
 		{1723FD3C-92BD-E27E-67A3-92BABFB90E1A}.Release|x64.Build.0 = Release|x64
+		{2183478F-8458-4993-B49F-6A956AAB1EDA}.Debug|x64.ActiveCfg = Debug|x64
+		{2183478F-8458-4993-B49F-6A956AAB1EDA}.Debug|x64.Build.0 = Debug|x64
+		{2183478F-8458-4993-B49F-6A956AAB1EDA}.Release|x64.ActiveCfg = Release|x64
+		{2183478F-8458-4993-B49F-6A956AAB1EDA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

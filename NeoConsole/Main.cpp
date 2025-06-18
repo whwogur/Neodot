@@ -9,11 +9,6 @@ using namespace std::string_literals;
 
 std::unique_ptr<Neodot::Log::IChannel> pChan;
 
-void foo()
-{
-	neolog.error(L"Found an Error!");
-}
-
 void Init()
 {
 	Neodot::Log::Init();

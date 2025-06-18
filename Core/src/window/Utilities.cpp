@@ -1,4 +1,5 @@
 #include "Utilities.h"
+#include "Exception.h"
 #include <Core/src/Log/Log.h>
 
 namespace Neodot::window
@@ -37,5 +38,37 @@ namespace Neodot::window
 			}
 		}
 		return description;
+	}
+
+	RECT ToWinRect(const DS::RectI& rect)
+	{
+		return {
+			.left = rect.left,
+			.top = rect.top,
+			.right = rect.right,
+			.bottom = rect.bottom,
+		};
+	}
+
+	DS::RectI ToRect(const RECT& rWin)
+	{
+		return {
+			.left = rWin.left,
+			.top = rWin.top,
+			.right = rWin.right,
+			.bottom = rWin.bottom,
+		};
+	}
+
+	DS::DimensionsI ClientToWindowDimensions(const DS::DimensionsI& dims, DWORD styles)
+	{
+		using namespace DS;
+		auto rect = ToWinRect(RectI::FromPointAndDimensions(Vec2I(0, 0), dims));
+		if (FALSE == AdjustWindowRect(&rect, styles, FALSE))
+		{
+			neolog.error(L"Failed to adjust window rect").hr();
+			throw WindowException{};
+		}
+		return ToRect(rect).GetDimensions();
 	}
 }

@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\window\Init.h" />
     <ClInclude Include="src\DS\Dimensions.h" />
     <ClInclude Include="src\DS\Rect.h" />
     <ClInclude Include="src\DS\Vec2.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="src\window\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\window\Init.cpp" />
     <ClCompile Include="src\util\NoReturn.cpp" />
     <ClCompile Include="src\util\Exception.cpp" />
     <ClCompile Include="src\util\Assert.cpp" />
