@@ -53,7 +53,7 @@ namespace Infrastructure::IOC
 		// trying to resolve a service without registering
 		TEST_METHOD(SimpleResolveFailure)
 		{
-			Assert::ExpectException<std::runtime_error>([this] {
+			Assert::ExpectException<Neodot::IOC::ServiceNotFound>([this] {
 				pIOC->Resolve<Base>();
 			});
 		}
