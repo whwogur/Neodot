@@ -3,6 +3,8 @@
 #include <Core/src/Log/SeverityLevelPolicy.h> 
 #include <Core/src/window/Init.h>
 #include <Core/src/Log/Log.h> 
+#include <Core/src/IOC/Singletons.h>
+#include <Core/src/window/Window.h>
 
 using namespace Neodot;
 
@@ -17,15 +19,23 @@ void Init()
 }
 
 int WINAPI wWinMain(
-	HINSTANCE hInstance,
-	HINSTANCE hPrevInstance,
-	PWSTR pCmdLine,
-	int nCmdShow)
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ PWSTR pCmdLine,
+	_In_ int nCmdShow)
 {
 	Init();
 
-	neolog.info(L"Neodot Window");
-	MessageBoxA(nullptr, "", "Hello World", MB_APPLMODAL | MB_ICONEXCLAMATION);
+	window::Window window{
+		IOC::Sing().Resolve<window::IWindowClass>(),
+		L"Neodot",
+		{ 1280, 1024 }
+	};
+
+	while (!window.IsClosing())
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+	}
 
 	return 0;
 }

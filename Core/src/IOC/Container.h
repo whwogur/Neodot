@@ -46,19 +46,19 @@ namespace Neodot::IOC // IOC ∆—≈‰∏Æ
 		template<Parameterized T>
 		std::shared_ptr<T> Resolve(typename T::IocParams&& params = {}) const
 		{
-			return Resolve_<T, ParameterizedGenerator<T>>(std::forward<typename T::IocParams>(params));
+			return Resolve<T, ParameterizedGenerator<T>>(std::forward<typename T::IocParams>(params));
 		}
 		template<NotParameterized T>
 		std::shared_ptr<T> Resolve() const
 		{
-			return Resolve_<T, Generator<T>>();
+			return Resolve<T, Generator<T>>();
 		}
 	private:
 		// ===========
 		// functions
 		// ===========
-		template<class T, class G, typename...Ps>
-		std::shared_ptr<T> Resolve_(Ps&&...arg) const
+		template<class T, class G/*Generator*/, typename...Ps>
+		std::shared_ptr<T> Resolve(Ps&&...arg) const
 		{
 			// TODO: pull this out of template/header
 			if (const auto i = m_serviceMap.find(typeid(T)); i != m_serviceMap.end())
