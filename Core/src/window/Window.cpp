@@ -9,11 +9,8 @@ namespace Neodot::window
 {
 	Window::Window(std::shared_ptr<IWindowClass> pWindowClass, std::wstring title,
 		DS::DimensionsI clientAreaSize, std::optional<DS::Vec2I> position)
-		: m_mainLoopThread
-		{ 
-			&Window::MessageLoop,
-			this
-		}
+		: m_mainLoopThread { &Window::MessageLoop, this }
+		, m_pWindowClass{ std::move(pWindowClass) }
 	{
 		auto future = m_tasks.Push([=, this] {
 			const DWORD styles = WS_VISIBLE | WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU;

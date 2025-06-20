@@ -49,6 +49,7 @@ namespace Neodot::window
 		mutable DS::TaskQueue m_tasks;
 		std::binary_semaphore m_startSignal{ 0 };
 		std::thread m_mainLoopThread;
+		std::shared_ptr<IWindowClass> m_pWindowClass;
 		HWND m_hWnd = nullptr;
 		std::atomic<bool> m_bClosing = false;
 	};
