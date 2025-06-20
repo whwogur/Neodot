@@ -58,6 +58,16 @@ namespace Neodot::window
 		return m_bClosing;
 	}
 
+	std::future<void> Window::SetTitle(std::wstring title)
+	{
+		return Dispatch([=, this]{
+			if (!SetWindowTextW(m_hWnd, title.c_str()))
+			{
+				neolog.warn().hr();
+			}
+		});
+	}
+
 	Window::~Window()
 	{
 		Dispatch([this] {

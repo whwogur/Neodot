@@ -19,6 +19,7 @@ namespace Neodot::window
 			DS::DimensionsI clientAreaSize, std::optional<DS::Vec2I> position = {});
 		HWND GetHandle() const override;
 		bool IsClosing() const override;
+		std::future<void> SetTitle(std::wstring title) override;
 		~Window() override;
 
 	protected:
