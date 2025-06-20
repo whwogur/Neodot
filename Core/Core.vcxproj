@@ -106,6 +106,7 @@
     <ClInclude Include="src\window\WindowClass.h" />
     <ClInclude Include="src\window\Utilities.h" />
     <ClInclude Include="src\DS\Concurrency\TaskQueue.h" />
+    <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\window\Init.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="src\window\WindowClass.cpp" />
     <ClCompile Include="src\window\Utilities.cpp" />
     <ClCompile Include="src\DS\Concurrency\TaskQueue.cpp" />
+    <ClCompile Include="src\window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,18 @@
-#include <Core/src/window/NeoWin.h>
+﻿#include <Core/src/window/NeoWin.h>
 #include <Core/src/IOC/Container.h> 
 #include <Core/src/Log/SeverityLevelPolicy.h> 
 #include <Core/src/window/Init.h>
 #include <Core/src/Log/Log.h> 
+#include <Core/src/window/IWindow.h>
+#include <ranges> 
+#include <algorithm>
+#include <iterator>
 
 using namespace Neodot;
+using namespace std::string_literals;
+using namespace std::chrono_literals;
+namespace rng = std::ranges;
+namespace vw = rng::views;
 
 void Init()
 {
@@ -17,15 +25,34 @@ void Init()
 }
 
 int WINAPI wWinMain(
-	HINSTANCE hInstance,
-	HINSTANCE hPrevInstance,
-	PWSTR pCmdLine,
-	int nCmdShow)
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ PWSTR pCmdLine,
+	_In_ int nCmdShow)
 {
 	Init();
+	int x = 0;
 
-	neolog.info(L"Neodot Window");
-	MessageBoxA(nullptr, "", "Hello World", MB_APPLMODAL | MB_ICONEXCLAMATION);
+	// 창 10개 생성/ 스레드 블로킹 테스트
+	std::vector<std::shared_ptr<window::IWindow>> windowPtrs;
+	auto view = vw::iota(0, 10)
+		| vw::transform([](auto i) { return IOC::Get().Resolve<window::IWindow>(); });
+
+	windowPtrs.reserve(10);
+	std::ranges::copy(view, std::back_inserter(windowPtrs));
+
+	while (!windowPtrs.empty())
+	{
+		std::erase_if(windowPtrs, [](auto& p) {return p->IsClosing(); });
+
+		for (auto& p : windowPtrs)
+		{
+			p->SetTitle(std::format(L"Neodot {}🚀", std::wstring(x, L' ')));
+		}
+		x = (x + 1) % 20;
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100ms));
+	}
 
 	return 0;
 }
