@@ -8,21 +8,21 @@
 
 namespace Microsoft::VisualStudio::CppUnitTestFramework
 {
-    template<> inline std::wstring __cdecl
-    ToString<Neodot::DS::Vec2I>(const Neodot::DS::Vec2I& vec)
-    {
-        std::wstringstream stream;
-        stream << L"Vec2(" << vec.x << L", " << vec.y << L")";
-        return stream.str();
-    }
+	template<> inline std::wstring __cdecl
+		ToString<Neodot::DS::Vec2I>(const Neodot::DS::Vec2I& vec)
+	{
+		std::wstringstream stream;
+		stream << L"Vec2(" << vec.x << L", " << vec.y << L")";
+		return stream.str();
+	}
 
-    template<> inline std::wstring __cdecl
-    ToString<Neodot::DS::DimensionsI>(const Neodot::DS::DimensionsI& dims)
-    {
-        std::wstringstream stream;
-        stream << L"Dimensions(" << dims.width << L", " << dims.height << L")";
-        return stream.str();
-    }
+	template<> inline std::wstring __cdecl
+		ToString<Neodot::DS::DimensionsI>(const Neodot::DS::DimensionsI& dims)
+	{
+		std::wstringstream stream;
+		stream << L"Dimensions(" << dims.width << L", " << dims.height << L")";
+		return stream.str();
+	}
 }
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -123,12 +123,12 @@ namespace Infrastructure::DS
 				TaskQueue taskQueue;
 
 				// Push tasks from multiple threads
-				int x = 0;
+				std::atomic<int> x{ 0 };
 				std::vector<std::future<void>> futures;
 				for (int i = 0; i < 10; i++)
 				{
 					auto future = std::async(std::launch::async, [&taskQueue, &x]() {
-						taskQueue.Push([&x]() { x += 1; });
+						taskQueue.Push([&x]() { x++; });
 					});
 					futures.push_back(std::move(future));
 				}
@@ -154,7 +154,7 @@ namespace Infrastructure::DS
 				}
 
 				// Check result of x
-				Assert::AreEqual(10, x);
+				Assert::AreEqual(10, x.load());
 			}
 		};
     }
