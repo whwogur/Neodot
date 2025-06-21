@@ -51,7 +51,7 @@ int WINAPI wWinMain(
 		}
 		x = (x + 1) % 20;
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(100ms));
+		std::this_thread::sleep_for(100ms);
 	}
 
 	return 0;

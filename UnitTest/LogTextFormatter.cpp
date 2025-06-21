@@ -23,10 +23,12 @@ namespace Infrastructure::Log
 					std::chrono::days{ 10'000 }
 				}
 			};
-			Assert::AreEqual(
-				L"@Info {1997-05-19 09:00:00.0000000 GMT+9} Hello World\n  >> at Infrastructure::Log::LogTextFormatterTests::TestFormat\n     C:\\Users\\cuteg\\Desktop\\Neodot\\UnitTest\\LogTextFormatter.cpp(21)\n"s,
-				Neodot::Log::TextFormatter{}.Format(e)
-			);
+
+			std::wstring expectedText = 
+				std::format(L"@Info {{{0}}} Hello World\n  >> at Infrastructure::Log::LogTextFormatterTests::TestFormat\n     {1}({2})\n",
+				std::chrono::zoned_time{ std::chrono::current_zone(), e.m_timestamp }, e.m_sourceFile, e.m_sourceLine);
+
+				Assert::AreEqual(expectedText, Neodot::Log::TextFormatter{}.Format(e));
 		}
 	};
 }

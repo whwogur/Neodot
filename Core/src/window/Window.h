@@ -34,7 +34,7 @@ namespace Neodot::window
 		virtual void MessageLoop() noexcept;
 
 		LRESULT HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept override;
-		template<class F>
+		template<std::invocable F>
 		auto Dispatch(F&& f)
 		{
 			auto future = m_tasks.Push(std::forward<F>(f));

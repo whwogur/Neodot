@@ -25,7 +25,7 @@ namespace Neodot::window
 
 			m_hWnd = CreateWindowExW(
 				exStyles,
-				MAKEINTATOM(pWindowClass->GetAtom()),
+				MAKEINTATOM(m_pWindowClass->GetAtom()),
 				title.c_str(),
 				styles,
 				position ? position->x : CW_USEDEFAULT,
@@ -60,7 +60,7 @@ namespace Neodot::window
 		return Dispatch([=, this]{
 			if (!SetWindowTextW(m_hWnd, title.c_str()))
 			{
-				neolog.warn().hr();
+				neolog.warn(L"Failed to set window title!").hr();
 			}
 		});
 	}
